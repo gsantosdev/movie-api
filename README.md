@@ -33,10 +33,11 @@ A API estará disponível em http://localhost:8080/movie e a documentação do S
 Como usar a API
 A API possui os seguintes endpoints:
 
-GET /movie/{id}: Retorna os detalhes de um filme pelo ID.
-GET /movie: Retorna uma lista de filmes com base nos parâmetros de busca.
-POST /movie: Registra um novo filme.
-PUT /movie/{id}: Atualiza os detalhes de um filme existente pelo ID.
-PATCH /movie/{id}/rating: Avalia um filme existente pelo ID.
-GET /movie/non-rated: Retorna uma lista de filmes não avaliados com base em uma lista de IDs de filmes.
+- GET /movie/{id}: Retorna os detalhes de um filme pelo ID.
+- GET /movie: Retorna uma lista de filmes com base nos parâmetros de busca.
+- POST /movie: Registra um novo filme.
+- PUT /movie/{id}: Atualiza os detalhes de um filme existente pelo ID.
+- PATCH /movie/{id}/rating: Avalia um filme existente pelo ID.
+- GET /movie/non-rated: Retorna uma lista de filmes não avaliados com base em uma lista de IDs de filmes.
+
 Você pode utilizar ferramentas como o Postman ou o curl para testar os endpoints da API.
