@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_local
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+      MYSQL_USER: root
+      MYSQL_PASSWORD: mypassword
+      MYSQL_INITDB_SKIP_TZINFO: '1'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
