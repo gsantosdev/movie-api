@@ -25,8 +25,7 @@ docker-compose up -d
 Aguarde até que o banco de dados MySQL esteja em execução.
 
 Compile e rode o projeto utilizando o Gradle:
-```
-sh
+```sh
 ./gradlew bootRun
 ```
 A API estará disponível em http://localhost:8080/movie e a documentação do Swagger estará disponível em http://localhost:8080/swagger-ui.html.
