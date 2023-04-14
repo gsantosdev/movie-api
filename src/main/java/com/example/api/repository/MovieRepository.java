@@ -1,6 +1,6 @@
-package com.example.desafio.repository;
+package com.example.api.repository;
 
-import com.example.desafio.model.MovieEntity;
+import com.example.api.model.MovieEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

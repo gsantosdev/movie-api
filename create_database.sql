@@ -1,0 +1,2 @@
+CREATE DATABASE movieDB;
+USE movieDB;
