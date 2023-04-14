@@ -59,7 +59,7 @@ public class MovieService {
             .map(movieMapper::toEntity)
             .map(entity -> Example.of(entity, ExampleMatcher.matchingAll().withIgnoreCase()))
             .map(movieRepository::findAll)
-            .orElse(Collections.emptyList());
+            .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
     }
 
     public Optional<MovieEntity> rateMovie(@NotNull final Long id, final RateMovieDTO rateMovieDTO) {
