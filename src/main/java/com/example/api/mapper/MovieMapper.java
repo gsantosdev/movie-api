@@ -2,7 +2,7 @@ package com.example.api.mapper;
 
 import com.example.api.controller.request.MovieRequest;
 import com.example.api.controller.response.MovieResponse;
-import com.example.api.dto.MovieDTO;
+import com.example.api.controller.dto.MovieDTO;
 import com.example.api.model.MovieEntity;
 import java.util.List;
 import org.mapstruct.InjectionStrategy;

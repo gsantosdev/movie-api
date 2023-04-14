@@ -1,6 +1,6 @@
 package com.example.api.service;
 
-import com.example.api.dto.MovieDTO;
+import com.example.api.controller.dto.MovieDTO;
 import com.example.api.exception.ResourceNotFoundException;
 import com.example.api.mapper.MovieMapper;
 import com.example.api.model.MovieEntity;

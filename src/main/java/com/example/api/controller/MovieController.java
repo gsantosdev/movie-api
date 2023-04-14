@@ -11,6 +11,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -96,6 +97,13 @@ public class MovieController {
 
         return ResponseEntity.of(movieResponseList);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable("id") Long id) {
+        Optional.ofNullable(id).ifPresent(movieService::deleteMovieById);
+
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.api.service;
 
-import com.example.api.dto.MovieDTO;
-import com.example.api.dto.RateMovieDTO;
+import com.example.api.controller.dto.MovieDTO;
+import com.example.api.controller.dto.RateMovieDTO;
 import com.example.api.exception.ResourceNotFoundException;
 import com.example.api.mapper.MovieMapper;
 import com.example.api.model.MovieEntity;
@@ -33,7 +33,7 @@ public class MovieService {
 
     }
 
-    public Optional<MovieEntity> updateMovie(final Long id, final MovieDTO movieDTO) {
+    public Optional<MovieEntity> updateMovie(@NotNull final Long id, final MovieDTO movieDTO) {
 
         return Optional.ofNullable(id)
             .filter(movieRepository::existsById)
@@ -41,7 +41,13 @@ public class MovieService {
             .map(movieRepository::save);
     }
 
-    public MovieEntity findMovieByIdOrThrow(final Long id) {
+    public void deleteMovieById(@NotNull final Long id) {
+        Optional.ofNullable(id)
+            .map(this::findMovieByIdOrThrow)
+            .ifPresent(movieRepository::delete);
+    }
+
+    public MovieEntity findMovieByIdOrThrow(@NotNull final Long id) {
         return this.findMovieById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
     }
@@ -56,7 +62,7 @@ public class MovieService {
             .orElse(Collections.emptyList());
     }
 
-    public Optional<MovieEntity> rateMovie(final Long id, final RateMovieDTO rateMovieDTO) {
+    public Optional<MovieEntity> rateMovie(@NotNull final Long id, final RateMovieDTO rateMovieDTO) {
 
         return Optional.ofNullable(id)
             .map(this::findMovieByIdOrThrow)
@@ -79,7 +85,7 @@ public class MovieService {
         return this.findMovieById(id).orElse(null);
     }
 
-    private Optional<MovieEntity> findMovieById(final Long id) {
+    private Optional<MovieEntity> findMovieById(@NotNull final Long id) {
         return movieRepository.findById(id);
     }
 
