@@ -16,6 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import static java.util.function.Predicate.not;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +76,12 @@ public class MovieService {
     }
 
     public List<MovieEntity> findAllNonRatingMovies(final List<Long> idList) {
+        return Optional.ofNullable(getNonRatedMovies(idList))
+            .filter(not(CollectionUtils::isEmpty))
+            .orElseThrow(() -> new ResourceNotFoundException("Movies not found"));
+    }
+
+    private List<MovieEntity> getNonRatedMovies(List<Long> idList) {
         return idList.stream()
             .map(this::findMovieByIdOrNull)
             .filter(Objects::nonNull)

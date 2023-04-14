@@ -47,7 +47,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieResponse>> findMovieByParams(MovieRequest movieRequest) {
+    public ResponseEntity<List<MovieResponse>> findMovieByParams(MovieRequest movieRequest/*TODO remove required*/) {
         final Optional<List<MovieResponse>> movieResponseList = ofNullable(movieRequest)
             .map(movieMapper::toDTO)
             .map(movieService::findAllByParams)

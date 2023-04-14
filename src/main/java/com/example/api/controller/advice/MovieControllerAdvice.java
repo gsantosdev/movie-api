@@ -29,9 +29,16 @@ public class MovieControllerAdvice {
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({ResourceNotFoundException.class, IllegalArgumentException.class})
-    public Map<String, String> handleResourceNotFound(
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Map<String, String> handleIlegalArgument(
         RuntimeException ex) {
+        return Collections.singletonMap("ERROR", ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public Map<String, String> handleResourceNotFound(
+        ResourceNotFoundException ex) {
         return Collections.singletonMap("ERROR", ex.getMessage());
     }
 
