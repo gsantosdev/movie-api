@@ -1,6 +1,6 @@
 # Movie API
 
-Este é um projeto de API REST para gerenciamento de filmes, utilizando Spring, Swagger 2, Gradle e Docker Compose para subir o container do MySQL.
+Este é um projeto de API REST para gerenciamento de filmes, utilizando Java, Spring, Swagger, Gradle e Docker para subir o container do MySQL.
 
 ## Como rodar o projeto
 
