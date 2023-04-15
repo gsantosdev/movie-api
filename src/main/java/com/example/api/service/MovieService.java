@@ -62,6 +62,7 @@ public class MovieService {
             .map(movieMapper::toEntity)
             .map(entity -> Example.of(entity, ExampleMatcher.matchingAll().withIgnoreCase()))
             .map(movieRepository::findAll)
+            .filter(not(CollectionUtils::isEmpty))
             .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
     }
 
