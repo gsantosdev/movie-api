@@ -2,6 +2,7 @@ package com.example.api.controller;
 
 import com.example.api.controller.request.MovieRequest;
 import com.example.api.controller.request.RateMovieRequest;
+import com.example.api.controller.request.SearchMovieRequest;
 import com.example.api.controller.response.MovieResponse;
 import com.example.api.mapper.MovieMapper;
 import com.example.api.mapper.RateMovieMapper;
@@ -47,7 +48,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieResponse>> findMovieByParams(MovieRequest movieRequest/*TODO remove required*/) {
+    public ResponseEntity<List<MovieResponse>> findMovieByParams(SearchMovieRequest movieRequest) {
         final Optional<List<MovieResponse>> movieResponseList = ofNullable(movieRequest)
             .map(movieMapper::toDTO)
             .map(movieService::findAllByParams)
