@@ -6,11 +6,9 @@ import com.example.api.exception.ResourceNotFoundException;
 import com.example.api.mapper.MovieMapper;
 import com.example.api.model.MovieEntity;
 import com.example.api.repository.MovieRepository;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
@@ -76,18 +74,17 @@ public class MovieService {
             });
     }
 
-    public List<MovieEntity> findAllNonRatingMovies(final List<Long> idList) {
-        return Optional.ofNullable(getNonRatedMovies(idList))
-            .filter(not(CollectionUtils::isEmpty))
+    public MovieEntity findAllNonRatingMovies(final List<Long> idList) {
+        return getNonRatedMovies(idList)
             .orElseThrow(() -> new ResourceNotFoundException("Movies not found"));
     }
 
-    private List<MovieEntity> getNonRatedMovies(List<Long> idList) {
+    private Optional<MovieEntity> getNonRatedMovies(List<Long> idList) {
         return idList.stream()
             .map(this::findMovieByIdOrNull)
             .filter(Objects::nonNull)
             .filter(movieEntity -> Objects.isNull(movieEntity.getRating()))
-            .collect(Collectors.toList());
+            .findAny();
     }
 
 

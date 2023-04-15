@@ -90,14 +90,13 @@ public class MovieController {
         return ResponseEntity.of(movieResponse);
     }
 
-    @GetMapping("/non-rated")
-    public ResponseEntity<List<MovieResponse>> returnNonRatedMoviesFromList(@RequestParam List<Long> movieIdList) {
-        final Optional<List<MovieResponse>> movieResponseList = ofNullable(movieIdList)
+    @GetMapping("/one-non-rated")
+    public ResponseEntity<MovieResponse> returnOneNonRatedMovieFromList(@RequestParam List<Long> movieIdList) {
+        final Optional<MovieResponse> movieResponse = ofNullable(movieIdList)
             .map(movieService::findAllNonRatingMovies)
-            .map(movieMapper::toResponseList);
+            .map(movieMapper::toResponse);
 
-        return ResponseEntity.of(movieResponseList);
-
+        return ResponseEntity.of(movieResponse);
     }
 
     @DeleteMapping("/{id}")
