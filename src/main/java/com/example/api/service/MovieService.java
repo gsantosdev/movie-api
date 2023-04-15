@@ -74,7 +74,7 @@ public class MovieService {
             });
     }
 
-    public MovieEntity findAllNonRatingMovies(final List<Long> idList) {
+    public MovieEntity findOneNonRatingMovie(final List<Long> idList) {
         return getNonRatedMovies(idList)
             .orElseThrow(() -> new ResourceNotFoundException("Movies not found"));
     }
