@@ -8,6 +8,7 @@ import com.example.api.repository.MovieRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
@@ -75,13 +76,13 @@ class MovieServiceTest {
         MovieDTO movieDTO = new MovieDTO();
         MovieEntity movieEntity = new MovieEntity();
         when(movieMapper.toEntity(movieDTO)).thenReturn(movieEntity);
-        when(movieRepository.findAll(any(Example.class))).thenReturn(Collections.emptyList());
+        when(movieRepository.findAll(any(Example.class))).thenReturn(List.of(movieEntity));
 
         // Act
         List<MovieEntity> result = movieService.findAllByParams(movieDTO);
 
         // Assert
-        assertEquals(0, result.size());
+        assertEquals(1, result.size());
         verify(movieMapper).toEntity(movieDTO);
         verify(movieRepository).findAll(any(Example.class));
     }
@@ -154,10 +155,9 @@ class MovieServiceTest {
         when(movieRepository.findAll(any(Example.class))).thenReturn(Collections.emptyList());
 
         // Act
-        List<MovieEntity> result = movieService.findAllByParams(movieDTO);
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> movieService.findAllByParams(movieDTO));
 
         // Assert
-        assertEquals(0, result.size());
         verify(movieMapper).toEntity(movieDTO);
         verify(movieRepository).findAll(any(Example.class));
     }
